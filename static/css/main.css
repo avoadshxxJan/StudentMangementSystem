@@ -1,0 +1,173 @@
+/* EduTrack Modern College Design System */
+:root {
+  --primary-navy: #0f172a;
+  --secondary-navy: #1e293b;
+  --accent-blue: #1e40af;
+  --accent-blue-hover: #1d4ed8;
+  --accent-cyan: #0284c7;
+  --bg-slate: #f8fafc;
+  --card-bg: #ffffff;
+  --border-subtle: #e2e8f0;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --success-emerald: #059669;
+  --warning-amber: #d97706;
+  --danger-rose: #e11d48;
+  --info-sky: #0284c7;
+  --radius-card: 0.75rem;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-card: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: var(--bg-slate);
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navbar & Brand */
+.navbar-edutrack {
+  background: linear-gradient(135deg, var(--primary-navy) 0%, var(--secondary-navy) 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.85rem 1.5rem;
+}
+
+.navbar-brand-badge {
+  background: rgba(59, 130, 246, 0.2);
+  color: #93c5fd;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(147, 197, 253, 0.3);
+  margin-left: 0.5rem;
+}
+
+/* Card Styling */
+.card-edutrack {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-edutrack:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+.card-header-clean {
+  background-color: transparent;
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 1.25rem 1.5rem;
+  font-weight: 600;
+  color: var(--primary-navy);
+}
+
+/* Modern Buttons */
+.btn-edutrack-primary {
+  background-color: var(--accent-blue);
+  color: #ffffff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  font-weight: 500;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+.btn-edutrack-primary:hover {
+  background-color: var(--accent-blue-hover);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.btn-edutrack-secondary {
+  background-color: #f1f5f9;
+  color: var(--text-main);
+  border: 1px solid var(--border-subtle);
+  border-radius: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  font-weight: 500;
+}
+
+.btn-edutrack-secondary:hover {
+  background-color: #e2e8f0;
+  color: var(--primary-navy);
+}
+
+/* Hero Section */
+.hero-banner {
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+  color: #ffffff;
+  border-radius: 1rem;
+  padding: 3.5rem 2.5rem;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-banner::after {
+  content: '';
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.25) 0%, rgba(255, 255, 255, 0) 70%);
+  border-radius: 50%;
+}
+
+/* Role Badges */
+.badge-role-admin {
+  background-color: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+.badge-role-hod {
+  background-color: #eff6ff;
+  color: #1e40af;
+  border: 1px solid #bfdbfe;
+}
+
+.badge-role-faculty {
+  background-color: #f0fdf4;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
+.badge-role-student {
+  background-color: #faf5ff;
+  color: #6b21a8;
+  border: 1px solid #e9d5ff;
+}
+
+.badge-role-guardian {
+  background-color: #fffbeb;
+  color: #92400e;
+  border: 1px solid #fde68a;
+}
+
+/* Module Feature Cards */
+.feature-icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  margin-bottom: 1rem;
+}
+
+.footer-edutrack {
+  margin-top: auto;
+  border-top: 1px solid var(--border-subtle);
+  background-color: #ffffff;
+  padding: 1.5rem 0;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}

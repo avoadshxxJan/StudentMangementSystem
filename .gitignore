@@ -1,0 +1,29 @@
+# Python / Virtual Environment
+.venv/
+venv/
+ENV/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment secrets
+.env
+
+# Database
+*.sqlite3
+*.db
+
+# Media uploads & static collection
+media/
+staticfiles/
+
+# IDE & Editor artifacts
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Testing & coverage
+.coverage
+htmlcov/
+.pytest_cache/
