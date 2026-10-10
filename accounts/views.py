@@ -3,7 +3,7 @@ from django.shortcuts import render
 
 def home_view(request):
     """
-    Landing page showcasing EduTrack system status, module architecture,
-    access control rules, and illustrative yearly academic progress.
+    Public landing page for EduTrack.
+    Renders Phase 1 informational overview of the institutional platform.
     """
-    return render(request, 'home.html')
+    return render(request, 'pages/home.html')

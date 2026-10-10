@@ -1,111 +1,47 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ LANGUAGE_CODE|default:'en-in' }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="EduTrack - Smart College Student Management and Yearly Academic Progress Monitoring System">
-    <title>{% block title %}EduTrack | College Student Management{% endblock %}</title>
+    <meta name="description" content="{% block meta_description %}EduTrack - Smart College Student Management and Yearly Academic Progress Monitoring System{% endblock %}">
+    <title>{% block title %}EduTrack | College Academic Platform{% endblock %}</title>
 
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Bootstrap 5.3 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-    <!-- Custom Design Tokens -->
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
-
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+    <!-- EduTrack Custom Design Tokens & Styles -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
     {% block extra_head %}{% endblock %}
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 
-    <!-- Header Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-edutrack shadow-sm">
-        <div class="container-fluid px-lg-4">
-            <a class="navbar-brand d-flex align-items-center fw-bold fs-4" href="{% url 'home' %}">
-                <i class="bi bi-mortarboard-fill text-primary me-2"></i>
-                <span>EduTrack</span>
-                <span class="navbar-brand-badge">Academic Cloud</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#edutrackNav" aria-controls="edutrackNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="edutrackNav">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-3">
-                    <li class="nav-item">
-                        <a class="nav-link text-white-50 hover-text-white" href="{% url 'home' %}">Home</a>
-                    </li>
-                    {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link text-white-50" href="{% url 'admin:index' %}">System Administration</a>
-                    </li>
-                    {% endif %}
-                </ul>
+    <!-- Navigation Landmark Include -->
+    {% include 'includes/navbar.html' %}
 
-                <div class="d-flex align-items-center gap-3">
-                    {% if user.is_authenticated %}
-                        <div class="d-flex align-items-center text-white me-2">
-                            <span class="badge badge-role-hod me-2">{{ user.get_role_display }}</span>
-                            <span class="fw-semibold">{{ user.get_full_name|default:user.username }}</span>
-                        </div>
-                        <form method="post" action="{% url 'admin:logout' %}" class="d-inline">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-outline-light btn-sm rounded-pill px-3">
-                                <i class="bi bi-box-arrow-right me-1"></i> Sign Out
-                            </button>
-                        </form>
-                    {% else %}
-                        <a href="{% url 'admin:login' %}" class="btn btn-outline-light btn-sm rounded-pill px-3">
-                            <i class="bi bi-shield-lock me-1"></i> Administrator Access
-                        </a>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-    </nav>
+    <!-- Django Messages Framework Include -->
+    {% include 'includes/messages.html' %}
 
-    <!-- Global Alert Messages -->
-    <div class="container mt-3">
-        {% if messages %}
-            {% for message in messages %}
-                <div class="alert alert-{{ message.tags|default:'info' }} alert-dismissible fade show shadow-sm" role="alert">
-                    {{ message }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            {% endfor %}
-        {% endif %}
-    </div>
-
-    <!-- Main Content Area -->
-    <main class="flex-grow-1">
+    <!-- Main Content Landmark -->
+    <main id="main-content" class="flex-grow-1" role="main">
         {% block content %}{% endblock %}
     </main>
 
-    <!-- Footer -->
-    <footer class="footer-edutrack mt-5">
-        <div class="container text-center">
-            <div class="row align-items-center">
-                <div class="col-md-6 text-md-start mb-2 mb-md-0">
-                    <span class="fw-semibold text-dark">EduTrack</span> &mdash; Smart College Student Management and Yearly Academic Progress Monitoring System
-                </div>
-                <div class="col-md-6 text-md-end text-muted small">
-                    Department-Wise Isolation &bull; Permanent Student Identity &bull; Secure Academic Records
-                </div>
-            </div>
-        </div>
-    </footer>
+    <!-- Footer Landmark Include -->
+    {% include 'includes/footer.html' %}
 
-    <!-- Bootstrap 5.3 Bundle JS -->
+    <!-- Bootstrap 5.3 JavaScript Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <!-- Lightweight Vanilla JavaScript -->
+    <script src="{% static 'js/main.js' %}"></script>
+
     {% block extra_scripts %}{% endblock %}
 </body>
 </html>

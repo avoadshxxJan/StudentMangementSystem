@@ -1,0 +1,192 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}EduTrack | Smart College Student Management System{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+
+    <!-- Hero Section -->
+    <section class="edutrack-hero mb-5" aria-labelledby="hero-title">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <div class="d-inline-flex align-items-center gap-2 mb-3">
+                    <span class="badge edutrack-badge-subtle">
+                        Foundation Phase 1 Active
+                    </span>
+                    <span class="text-white-50 small">&bull; Institutional Architecture</span>
+                </div>
+                <h1 id="hero-title" class="display-6 fw-bold mb-3 text-white">
+                    EduTrack &mdash; College Student Management & Academic Progress System
+                </h1>
+                <p class="lead text-white-50 mb-4">
+                    A centralized higher-education platform designed to maintain an immutable student identity across all academic years, isolate departmental records, track multi-year progress, and deliver actionable academic support.
+                </p>
+                <div class="d-flex flex-wrap gap-3">
+                    <a href="{% url 'admin:index' %}" class="btn btn-light fw-semibold px-4 py-2 shadow-sm">
+                        Access Administration Portal
+                    </a>
+                    <a href="#modules" class="btn btn-outline-light px-4 py-2">
+                        Explore Planned Modules
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-4 d-none d-lg-block text-center">
+                <div class="p-4 bg-white bg-opacity-10 rounded-4 border border-white border-opacity-25">
+                    <div class="fs-1 text-info mb-2" aria-hidden="true">&#9670;</div>
+                    <h2 class="h5 fw-bold mb-1 text-white">Core Principle</h2>
+                    <p class="small text-white-50 mb-0">
+                        One permanent student identity across all academic terms, with access strictly controlled by institutional role and departmental scope.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture & Foundation Summary -->
+    <section class="mb-5" id="architecture" aria-labelledby="foundation-title">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card edutrack-card h-100 p-4">
+                    <h2 class="h6 fw-bold text-uppercase text-muted mb-2">Security & Identity</h2>
+                    <h3 class="h5 fw-semibold mb-2">Custom User & 8 Institutional Roles</h3>
+                    <p class="text-muted small mb-0">
+                        Configured at the root before initial migrations: Super Administrator, College Administrator, Principal, HOD, Faculty, Class Advisor, Student, and Guardian.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card edutrack-card h-100 p-4">
+                    <h2 class="h6 fw-bold text-uppercase text-muted mb-2">Data Integrity</h2>
+                    <h3 class="h5 fw-semibold mb-2">Historical Record Preservation</h3>
+                    <p class="text-muted small mb-0">
+                        Designed so advancing to subsequent academic years never overwrites historical assessment marks, attendance records, or previous semester outcomes.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card edutrack-card h-100 p-4">
+                    <h2 class="h6 fw-bold text-uppercase text-muted mb-2">Deployment Readiness</h2>
+                    <h3 class="h5 fw-semibold mb-2">SQLite Local &bull; PostgreSQL Production</h3>
+                    <p class="text-muted small mb-0">
+                        Environment variables govern configuration cleanly. Standard Django settings structure ready for institutional server deployment.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Planned Module Feature Cards (Strictly Informational) -->
+    <section id="modules" class="mb-5" aria-labelledby="modules-title">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h2 id="modules-title" class="h4 fw-bold mb-1">Planned Academic Modules</h2>
+                <p class="text-muted small mb-0">
+                    Informational preview of capabilities to be implemented in subsequent development phases.
+                </p>
+            </div>
+            <span class="badge bg-light text-secondary border">Roadmap Specification</span>
+        </div>
+
+        <div class="row g-4">
+            <!-- Module 1 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card edutrack-card feature-preview-card p-4">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <div class="feature-icon-wrapper" aria-hidden="true">&#128100;</div>
+                        <span class="feature-badge-planned">Planned &bull; Phase 4</span>
+                    </div>
+                    <h3 class="h5 fw-semibold mb-2">Student Information</h3>
+                    <p class="text-muted small mb-0">
+                        Permanent admission numbers, personal profiles, verified guardian linkages, and enrollment status without duplicate identities.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Module 2 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card edutrack-card feature-preview-card p-4">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <div class="feature-icon-wrapper" aria-hidden="true">&#127970;</div>
+                        <span class="feature-badge-planned">Planned &bull; Phase 4</span>
+                    </div>
+                    <h3 class="h5 fw-semibold mb-2">Department Management</h3>
+                    <p class="text-muted small mb-0">
+                        Strict isolation of departmental records: courses, assigned faculty, class advisors, and department-specific subjects.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Module 3 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card edutrack-card feature-preview-card p-4">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <div class="feature-icon-wrapper" aria-hidden="true">&#128200;</div>
+                        <span class="feature-badge-planned">Planned &bull; Phase 7</span>
+                    </div>
+                    <h3 class="h5 fw-semibold mb-2">Yearly Academic Progress</h3>
+                    <p class="text-muted small mb-0">
+                        Semester-wise marks, grades, cumulative averages, backlog tracking, and multi-year trajectory comparisons.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Module 4 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card edutrack-card feature-preview-card p-4">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <div class="feature-icon-wrapper" aria-hidden="true">&#9745;</div>
+                        <span class="feature-badge-planned">Planned &bull; Phase 6</span>
+                    </div>
+                    <h3 class="h5 fw-semibold mb-2">Attendance & Examinations</h3>
+                    <p class="text-muted small mb-0">
+                        Subject-wise attendance sessions, internal assessments, semester exams, and authorized correction workflows.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Module 5 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card edutrack-card feature-preview-card p-4">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <div class="feature-icon-wrapper" aria-hidden="true">&#127894;</div>
+                        <span class="feature-badge-planned">Planned &bull; Phase 8</span>
+                    </div>
+                    <h3 class="h5 fw-semibold mb-2">Skills & Achievements</h3>
+                    <p class="text-muted small mb-0">
+                        Student portfolio submissions for internships, certifications, workshops, and competitions with faculty verification.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Module 6 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card edutrack-card feature-preview-card p-4">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <div class="feature-icon-wrapper" aria-hidden="true">&#128196;</div>
+                        <span class="feature-badge-planned">Planned &bull; Phase 10</span>
+                    </div>
+                    <h3 class="h5 fw-semibold mb-2">Official Reporting</h3>
+                    <p class="text-muted small mb-0">
+                        Server-side PDF generation for student transcripts, annual progress summaries, and departmental attendance sheets.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scope Boundary Notice -->
+    <section class="alert alert-light border shadow-sm p-4 rounded-3" aria-label="Development Notice">
+        <div class="d-flex align-items-center gap-3">
+            <div class="text-primary fs-3" aria-hidden="true">&#8505;</div>
+            <div>
+                <h4 class="h6 fw-bold mb-1">Phase 1 Foundation Scope Notice</h4>
+                <p class="small text-muted mb-0">
+                    This page represents the architectural foundation of EduTrack. Academic records, attendance sessions, student marks, and role-based student/guardian dashboards will be implemented sequentially in subsequent phases.
+                </p>
+            </div>
+        </div>
+    </section>
+
+</div>
+{% endblock %}

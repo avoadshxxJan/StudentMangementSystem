@@ -1,0 +1,13 @@
+{% if messages %}
+<section class="container mt-3" aria-label="System Notifications">
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags|default:'info' }} alert-dismissible fade show edutrack-alert shadow-sm" role="alert">
+            <div class="d-flex align-items-center">
+                <span class="me-2" aria-hidden="true">&#9432;</span>
+                <div>{{ message }}</div>
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close notification"></button>
+        </div>
+    {% endfor %}
+</section>
+{% endif %}

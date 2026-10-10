@@ -1,23 +1,43 @@
 """
 Django settings for EduTrack project.
+
+Phase 1: Project Setup, Architecture, Configuration, and UI Foundation.
 """
 
 from pathlib import Path
 import os
+import sys
 from dotenv import load_dotenv
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# Build paths inside the project: BASE_DIR is the workspace root
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Load environment variables from .env
+# Load environment variables from .env located at BASE_DIR (not CWD)
 load_dotenv(BASE_DIR / '.env')
 
-# Security settings
-SECRET_KEY = os.getenv('SECRET_KEY', 'default-insecure-dev-key-change-in-production')
-DEBUG = os.getenv('DEBUG', 'True').lower() in ('true', '1', 'yes')
 
-hosts = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1')
-ALLOWED_HOSTS = [h.strip() for h in hosts.split(',') if h.strip()]
+def get_bool_env(name: str, default: bool = False) -> bool:
+    """Safely parse boolean environment variables without treating 'False' as True."""
+    val = os.getenv(name)
+    if val is None:
+        return default
+    return val.strip().lower() in ('true', '1', 't', 'yes', 'y')
+
+
+# Security Settings
+# Support both DJANGO_SECRET_KEY and legacy SECRET_KEY
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY') or os.getenv('SECRET_KEY')
+if not SECRET_KEY:
+    if get_bool_env('DJANGO_DEBUG', True):
+        # Development fallback with clear log notice
+        SECRET_KEY = 'insecure-dev-fallback-key-for-local-development-only'
+    else:
+        raise ValueError("DJANGO_SECRET_KEY must be set when running in production (DEBUG=False).")
+
+DEBUG = get_bool_env('DJANGO_DEBUG', get_bool_env('DEBUG', True))
+
+raw_allowed_hosts = os.getenv('DJANGO_ALLOWED_HOSTS') or os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost')
+ALLOWED_HOSTS = [h.strip() for h in raw_allowed_hosts.split(',') if h.strip()]
 
 
 # Application definition
@@ -30,7 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # EduTrack Core Apps
+    # Custom Core Applications
     'accounts.apps.AccountsConfig',
 ]
 
@@ -63,11 +83,11 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'config.wsgi.application'
+ASGI_APPLICATION = 'config.asgi.application'
 
 
 # Database Configuration
-# Defaults to SQLite for beginner-friendly local development.
-# Seamlessly switches to PostgreSQL when DB_ENGINE=postgresql is provided in .env.
+# Defaults to SQLite for local development; structured for future PostgreSQL deployment.
 
 DB_ENGINE = os.getenv('DB_ENGINE', 'sqlite').lower()
 
@@ -91,7 +111,7 @@ else:
     }
 
 
-# Custom User Model (Must be declared before initial migrations)
+# Custom User Model (Configured before initial migrations)
 AUTH_USER_MODEL = 'accounts.User'
 
 
@@ -112,9 +132,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
-LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'UTC'
+# Internationalization & Time Zone
+LANGUAGE_CODE = os.getenv('DJANGO_LANGUAGE_CODE', 'en-in')
+TIME_ZONE = os.getenv('DJANGO_TIME_ZONE', 'Asia/Kolkata')
 USE_I18N = True
 USE_TZ = True
 
@@ -124,14 +144,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# Media files (Student photos, certificate proofs)
+# Media files (Future student uploads and certificates)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
-
-# Authentication URLs
-LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = 'dashboard'
-LOGOUT_REDIRECT_URL = 'login'
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

@@ -1,0 +1,40 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark edutrack-navbar shadow-sm" aria-label="Main Navigation">
+        <div class="container px-lg-4">
+            <a class="navbar-brand d-flex align-items-center fw-bold fs-4" href="{% url 'home' %}">
+                <span class="brand-icon me-2" aria-hidden="true">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                        <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                    </svg>
+                </span>
+                <span>EduTrack</span>
+                <span class="badge edutrack-badge-subtle ms-2 d-none d-sm-inline-block">Phase 1 Foundation</span>
+            </a>
+
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#edutrackNavbarCollapse" aria-controls="edutrackNavbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="edutrackNavbarCollapse">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-3">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Overview</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#modules">Planned Modules</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#architecture">Architecture</a>
+                    </li>
+                </ul>
+
+                <div class="d-flex align-items-center gap-2">
+                    <a href="{% url 'admin:index' %}" class="btn btn-outline-light btn-sm px-3 rounded-pill">
+                        Administrative Console
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
